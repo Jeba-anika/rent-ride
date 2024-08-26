@@ -1,9 +1,15 @@
+import { Outlet } from "react-router-dom";
+import Footer from "./components/common/Footer";
+import Header from "./components/common/Header";
+
 function App() {
   return (
     <>
-      <h1 className="text-3xl text-center text-red-700">
-        Welcome to Vite with TailwindCSS and React
-      </h1>
+      <Header />
+      <div className="min-h-screen">
+        <Outlet />
+      </div>
+      <Footer />
     </>
   );
 }
