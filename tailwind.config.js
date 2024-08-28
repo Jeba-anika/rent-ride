@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-
+        "darkBg": '#231A31',
+        "rrSkyBlue": "#8AB2FF",
+        "rrWineRed": "#E42F45",
+        "rrMaroon": "#B42B3F"
       }
     },
   },
