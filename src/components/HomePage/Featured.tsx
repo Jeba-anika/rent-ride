@@ -7,7 +7,6 @@ import { TCar } from "../../types/cars.type";
 
 const Featured = () => {
   const { data, isLoading } = useGetFeaturedCarsQuery(undefined);
-  console.log(data);
 
   const contentStyle: React.CSSProperties = {
     color: "#fff",
@@ -23,7 +22,7 @@ const Featured = () => {
   }
   return (
     <div className="mt-20 px-10">
-      <h2 className="my-8 text-2xl text-center">Featured </h2>
+      <h2 className="my-10 text-3xl text-center font-bold">Featured </h2>
       <Carousel arrows infinite centerMode focusOnSelect>
         {data.data.map((car: TCar) => (
           <div>
