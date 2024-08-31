@@ -72,7 +72,7 @@ const Feedback = () => {
                   <p>
                     <Rate disabled defaultValue={feedback.rating} allowHalf />
                   </p>
-                  <p className="text-lg">Comment: {feedback.feedback}</p>
+                  <p className="text-lg"> {feedback.feedback}</p>
                 </div>
               </div>
             ))}{" "}

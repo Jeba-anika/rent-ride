@@ -1,3 +1,4 @@
+import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
@@ -39,6 +40,14 @@ const Footer = () => {
           </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div className="flex justify-center items-center gap-3 mb-4">
+          <a href="">
+            <FaFacebook className="size-6 text-rrSkyBlue" />
+          </a>
+          <a href="">
+            <FaInstagramSquare className="size-6 text-rrSkyBlue" />
+          </a>
+        </div>
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2023{" "}
           <Link to="/" className="hover:underline">

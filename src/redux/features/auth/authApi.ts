@@ -10,6 +10,7 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+
     signup: builder.mutation({
       query: (userInfo) => ({
         url: "/auth/signup",
@@ -18,7 +19,18 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    // getProfile: builder.query
+    updateProfile: builder.mutation({
+      query: (userInfo) => ({
+        url: "/auth/update-profile",
+        method: "PUT",
+        credentials: "include",
+        body: userInfo,
+      }),
+      // invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation } = authApi;
+export const { useLoginMutation, useSignupMutation, useUpdateProfileMutation } =
+  authApi;

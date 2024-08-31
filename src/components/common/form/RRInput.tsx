@@ -9,7 +9,7 @@ const RRInput = ({
 }: {
   label: string;
   name: string;
-  rules: any;
+  rules?: any;
   isPassword?: boolean;
   type?: "string" | "number" | "boolean" | "url" | "email";
 }) => {

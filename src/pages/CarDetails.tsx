@@ -2,6 +2,7 @@ import { Image, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetSingleCarQuery } from "../redux/features/cars/carsApi";
+import { TCarImg } from "../types/cars.type";
 
 const CarDetails = () => {
   const { carId } = useParams();
@@ -26,7 +27,7 @@ const CarDetails = () => {
   }
 
   return (
-    <div className="py-10">
+    <div className="px-10">
       <div className="flex justify-center">
         <Image src={selectedCarImg?.url} />
       </div>
@@ -40,6 +41,15 @@ const CarDetails = () => {
             />
           </button>
         ))}
+      </div>
+      <div className="border border-rrSkyBlue p-10 rounded-lg mt-4">
+        <h3 className="text-4xl mb-2">{carData.data.name}</h3>
+        <p>
+          <span className="text-2xl text-rrSkyBlue">
+            $ {carData.data.pricePerHour}
+          </span>{" "}
+          per hour
+        </p>
       </div>
     </div>
   );
