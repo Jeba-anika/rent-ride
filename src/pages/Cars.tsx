@@ -3,14 +3,18 @@ import { List, Space, Spin } from "antd";
 import React from "react";
 import { FaCarSide } from "react-icons/fa";
 import { FaRoad } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RRButton from "../components/common/RRButton";
 import { useGetAllCarsQuery } from "../redux/features/cars/carsApi";
 import { TCar } from "../types/cars.type";
 
 const Cars = () => {
-  const { data: carData, isLoading: isCarsLoading } =
-    useGetAllCarsQuery(undefined);
+  const location = useLocation();
+  console.log(location);
+  const { data: carData, isLoading: isCarsLoading } = useGetAllCarsQuery(
+    location.search
+  );
+
   if (isCarsLoading) {
     return <Spin fullscreen={true} />;
   }
@@ -24,57 +28,42 @@ const Cars = () => {
   );
   return (
     <div className="py-10 lg:px-32">
-      {/* {carData.data.map((car) => (
-        <div></div>
-      ))} */}
-
       <List
         itemLayout="vertical"
         size="large"
-        // pagination={{
-        //   onChange: (page) => {
-        //     console.log(page);
-        //   },
-        //   pageSize: 3,
-        // }}
         dataSource={carData.data}
-        // footer={
-        //   <div>
-        //     <b>ant design</b> footer part
-        //   </div>
-        // }
         renderItem={(item: TCar) => (
           <List.Item
-            key={item._id}
+            key={item?._id}
             actions={[
               <IconText
                 icon={TeamOutlined}
-                text={`${item.numberOfSeats} Seats`}
+                text={`${item?.numberOfSeats} Seats`}
                 key="list-vertical-star-o"
               />,
               <IconText
                 icon={FaCarSide}
-                text={item.carType}
+                text={item?.carType}
                 key="list-vertical-like-o"
               />,
               <IconText
                 icon={FaRoad}
-                text={item.mileage.toString()}
+                text={item?.mileage?.toString()}
                 key="list-vertical-message"
               />,
             ]}
-            extra={<img width={272} alt="logo" src={item.images[0].url} />}
+            extra={<img width={272} alt="logo" src={item?.images[0]?.url} />}
           >
             <List.Item.Meta
               //avatar={<Avatar src={item.avatar} />}
-              title={<h2 className="text-2xl">{item.name}</h2>}
-              description={item.description}
+              title={<h2 className="text-2xl">{item?.name}</h2>}
+              description={item?.description}
             />
             <p className="text-xl text-rrSkyBlue font-bold">
-              $ {item.pricePerHour} Per Hour
+              $ {item?.pricePerHour} Per Hour
             </p>
             <RRButton styles="my-2 px-3 py-2">
-              <Link to={`/cars/${item._id}`}>View Details</Link>
+              <Link to={`/cars/${item?._id}`}>View Details</Link>
             </RRButton>
           </List.Item>
         )}

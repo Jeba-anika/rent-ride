@@ -1,15 +1,20 @@
 import { DatePicker, DatePickerProps, Form, Input } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 import Banner from "../../assets/banner.jpg";
 import RRButton from "../common/RRButton";
 
 const Hero = () => {
   const [form] = Form.useForm();
+  const [selectedDate, setSelectedDate] = useState("");
+  const navigate = useNavigate();
   const handleCarSearch = (values) => {
     console.log(values);
+    navigate(`/cars?date=${selectedDate}&location=${values.location}`);
   };
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
+    setSelectedDate(dateString);
   };
   return (
     <ParallaxBanner style={{ aspectRatio: "2 / 1" }}>
@@ -70,16 +75,6 @@ const Hero = () => {
                 </RRButton>
               </Form.Item>
             </div>
-            {/* <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <RRButton
-              styles="px-6 py-2 rounded mt-4"
-              type="submit"
-              isDisabled={isSubmitBtnDisabled}
-              isLoading={isBtnLoading}
-            >
-              {submitBtnText}
-            </RRButton>
-          </Form.Item> */}
           </Form>
         </div>
       </ParallaxBannerLayer>

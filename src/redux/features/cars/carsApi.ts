@@ -3,9 +3,18 @@ import { baseApi } from "../../api/baseApi";
 const carsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCars: builder.query({
-      query: () => ({
-        url: "/cars",
-      }),
+      query: (param) => {
+        console.log(param);
+        if (param) {
+          return {
+            url: `/cars${param}`,
+          };
+        } else {
+          return {
+            url: "/cars",
+          };
+        }
+      },
       providesTags: ["cars"],
     }),
     getSingleCar: builder.query({
