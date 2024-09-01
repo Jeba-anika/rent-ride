@@ -22,4 +22,6 @@ export type TCar = {
     policyNumber: string;
     coverageDetails: string;
   };
+  year: Date;
+  model: string;
 };

@@ -29,8 +29,40 @@ const authApi = baseApi.injectEndpoints({
       }),
       // invalidatesTags: ["user"],
     }),
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "/auth/users",
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["user"],
+    }),
+    changeStatus: builder.mutation({
+      query: (user) => ({
+        url: "/auth/user-status-update",
+        method: "PUT",
+        credentials: "include",
+        body: user,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    makeAdmin: builder.mutation({
+      query: (user) => ({
+        url: "/auth/make-admin",
+        method: "PUT",
+        credentials: "include",
+        body: user,
+      }),
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation, useUpdateProfileMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useUpdateProfileMutation,
+  useGetAllUsersQuery,
+  useChangeStatusMutation,
+  useMakeAdminMutation,
+} = authApi;

@@ -10,6 +10,8 @@ import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 import ProfilePage from "../pages/ProfilePage";
 import Signup from "../pages/Signup";
+import ManageBooking from "../pages/admin/ManageBooking";
+import ManageCars from "../pages/admin/ManageCars";
 import ManageUsers from "../pages/admin/ManageUsers";
 
 const router = createBrowserRouter([
@@ -55,6 +57,22 @@ const router = createBrowserRouter([
             element: (
               <AdminLayout>
                 <ManageUsers />
+              </AdminLayout>
+            ),
+          },
+          {
+            path: "/manage-cars",
+            element: (
+              <AdminLayout>
+                <ManageCars />
+              </AdminLayout>
+            ),
+          },
+          {
+            path: "/manage-booking",
+            element: (
+              <AdminLayout>
+                <ManageBooking />
               </AdminLayout>
             ),
           },

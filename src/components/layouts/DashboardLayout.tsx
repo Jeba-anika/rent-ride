@@ -1,13 +1,21 @@
 import { UploadOutlined, UserOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
+import RRButton from "../common/RRButton";
 
 const { Content, Sider } = Layout;
 
 const DashboardLayout = () => {
   const user = useAppSelector((state) => state.auth.user);
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState(location.pathname);
+
+  useEffect(() => {
+    setSelectedKey(location.pathname);
+  }, [location.pathname]);
+
   const items = (
     user?.role === "user"
       ? [
@@ -31,15 +39,35 @@ const DashboardLayout = () => {
             icon: UploadOutlined,
             label: "Manage Return Cars",
           },
+          {
+            route: "/manage-users",
+            icon: UserOutlined,
+            label: "Manage Users",
+          },
         ]
-  ).map((item, index) => ({
-    key: String(index + 1),
+  ).map((item) => ({
+    key: `${item.route}`,
     icon: React.createElement(item.icon),
-    label: <Link to={item.route}>{item.label}</Link>,
+    label: (
+      <Link onClick={() => setSelectedKey(item.route)} to={item.route}>
+        {item.label}
+      </Link>
+    ),
   }));
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  if (!user) {
+    return (
+      <div className="flex justify-center gap-3 items-center mt-10">
+        <h2 className="text-3xl ">Please Login!</h2>
+        <Link to="/login">
+          <RRButton styles="px-4 py-2">Login</RRButton>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <Layout className="min-h-screen ">
       <Sider
@@ -56,7 +84,7 @@ const DashboardLayout = () => {
         <div className="demo-logo-vertical" />
         <Menu
           mode="inline"
-          defaultSelectedKeys={["4"]}
+          defaultSelectedKeys={[selectedKey]}
           items={items}
           style={{ backgroundColor: "#8AB2FF" }}
         />

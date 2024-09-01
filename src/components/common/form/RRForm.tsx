@@ -19,7 +19,7 @@ const RRForm = ({
   submitBtnText: string;
   onFinish: FormProps["onFinish"];
   isSubmitBtnDisabled?: boolean;
-  isBtnLoading: boolean;
+  isBtnLoading?: boolean;
 }) => {
   return (
     <Form

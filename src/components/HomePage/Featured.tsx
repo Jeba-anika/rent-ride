@@ -24,14 +24,14 @@ const Featured = () => {
     <div className="mt-20 px-10">
       <h2 className="my-10 text-3xl text-center font-bold">Featured </h2>
       <Carousel arrows infinite centerMode focusOnSelect>
-        {data.data.map((car: TCar) => (
-          <div>
+        {data?.data?.map((car: TCar) => (
+          <div key={car._id}>
             <div
               style={contentStyle}
               className="grid md:grid-cols-4 lg:h-[200px] mx-4 p-4 rounded-xl gap-3"
             >
               <div className="flex justify-center items-center">
-                <img src={car.images[0].url} className="size-36 rounded"></img>
+                <img src={car.images[0]?.url} className="size-36 rounded"></img>
               </div>
               <div className="col-span-2 text-start my-5 ">
                 <p className="text-2xl">{car.name}</p>
